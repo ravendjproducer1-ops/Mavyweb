@@ -2,7 +2,8 @@
 <html lang="km" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#030712">
     <title>Ma Vy | Elite Software Developer & System Administrator Portfolio</title>
     
     <!-- SEO Meta Tags -->
@@ -19,6 +20,9 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="smooth.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- AOS Animation Library CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Google Font -->
@@ -26,7 +30,8 @@
 </head>
 <body data-theme-color="blue" data-lang="km">
 
-    <!-- 🌟 Khmer & Hacker Code Rain Canvas Background -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <!-- Code Rain Canvas Background -->
     <canvas id="matrixCanvas"></canvas>
 
     <!-- Animated Background Motion Orbs -->
@@ -40,10 +45,12 @@
         <header class="site-header" data-aos="fade-down" data-aos-duration="800">
             <div class="brand-box">
                 <div class="brand-avatar">
-                    <img src="LOGO-2.png" alt="Ma Vy">
+                    <img src="LOGO-2.webp" alt="Ma Vy" width="46" height="46" decoding="async">
                 </div>
                 <span class="brand-name">MA VY <span class="dot">.</span></span>
             </div>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
 
             <!-- Global Live Status Badge for Header -->
             <div class="header-status-indicator">
@@ -97,13 +104,14 @@
             <div class="hero-image-box" data-aos="fade-left" data-aos-duration="1000">
                 <div class="image-frame-container">
                     <div class="image-frame">
-                        <img src="LOGO-2.png" alt="Ma Vy Profile">
+                        <img src="LOGO-2.webp" alt="Ma Vy Profile" width="280" height="280" fetchpriority="high" decoding="async">
                     </div>
                     <!-- Live Server / Work Status Floating Badge -->
                     <div class="floating-status-badge">
                         <span class="status-dot-mini"></span>
                         <div>
-                    
+                            <span class="badge-title" data-i18n="work_status_title">Work Status</span>
+                            <span class="badge-sub" data-i18n="work_status_sub">Ready for Projects</span>
                         </div>
                     </div>
                 </div>
@@ -321,7 +329,7 @@
                     <h2 data-i18n="contact_heading">ចាប់ផ្តើមការងារជាមួយគ្នា</h2>
                     <p data-i18n="contact_desc">មានគម្រោង ឬចង់ពិភាក្សាការងារជាមួយខ្ញុំ? សូមចុចលើអ៊ីមែលខាងក្រោមដើម្បីចម្លងទុក (Copy) ឬទាក់ទងតាមបណ្តាញសង្គមផ្ទាល់ខ្លួន៖</p>
                     
-                    <div class="email-direct copy-trigger" id="copyEmailBtn" data-email="ravendjproducer.1@gmail.com" title="ចុចเพื่อ Copy អ៊ីមែល">
+                    <div class="email-direct copy-trigger" id="copyEmailBtn" data-email="ravendjproducer.1@gmail.com" title="ចុចដើម្បី Copy អ៊ីមែល">
                         <div class="email-header-row">
                             <span data-i18n="email_label">អ៊ីមែលផ្ទាល់ខ្លួន (ចុចដើម្បី Copy)៖</span>
                             <span class="copy-feedback" id="copyFeedback">Copied!</span>
@@ -332,11 +340,20 @@
                     <div class="social-links-box">
                         <span data-i18n="social_label">បណ្តាញសង្គមផ្ទាល់ខ្លួន៖</span>
                         <div class="social-buttons">
-                            <a href="https://t.me/RaaVann" target="_blank" class="social-btn telegram">Telegram</a>
-                            <a href="https://github.com/ravendjproducer" target="_blank" class="social-btn github">GitHub</a>
+                            <a href="https://t.me/MAVY19000" target="_blank" rel="noopener" class="social-btn telegram">Telegram</a>
+                            <a href="https://github.com/ravendjproducer1-ops" target="_blank" rel="noopener" class="social-btn github">GitHub</a>
                             <a href="https://linkedin.com" target="_blank" class="social-btn linkedin">LinkedIn</a>
                         </div>
                     </div>
+
+                    <a class="qr-card" href="https://t.me/MAVY19000" target="_blank" rel="noopener">
+                        <img src="telegram-qr.webp" alt="Telegram QR @MAVY19000" width="640" height="777" loading="lazy" decoding="async">
+                        <div>
+                            <b data-i18n="qr_title">Scan to chat on Telegram</b>
+                            <span data-i18n="qr_desc">Scan with your phone or tap to open Telegram directly.</span>
+                            <span class="qr-handle">@MAVY19000</span>
+                        </div>
+                    </a>
                 </div>
 
                 <form id="contactForm" class="contact-form-side">
@@ -365,5 +382,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Script File -->
     <script src="script.js"></script>
+    <script src="smooth.js"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@ const translations = {
         hero_desc: "សួស្តី! ខ្ញុំឈ្មោះ Ma Vy។ មានជំនាញច្បាស់លាស់ក្នុងការអភិវឌ្ឍប្រព័ន្ធ កែសម្រួលស្គ្រីប និងការគ្រប់គ្រងម៉ាស៊ីនបម្រើ (Server) កម្រិតខ្ពស់។",
         btn_projects: "ស្វែងរកស្នាដៃ",
         btn_game: "លេងហ្គេម IQ ២០ សំណួរ",
-        work_status_title: "ສະຖານະភាពការងារ",
+        work_status_title: "ស្ថានភាពការងារ",
         work_status_sub: "Ready for Projects",
         about_title: "ទស្សនវិស័យ និងការតាំងចិត្ត",
         about_desc: "ផ្តោតសំខាន់លើការសរសេរកូដស្អាត (Clean Code) សុវត្ថិភាពប្រព័ន្ធខ្ពស់ និងការបង្កើតបទពិសោធន៍ប្រើប្រាស់ដ៏រលូនបំផុតដោយមិនមានការរអាក់រអួល។",
@@ -49,6 +49,8 @@ const translations = {
         form_email: "អ៊ីមែលរបស់អ្នក",
         form_msg: "សរសេរខ្លឹមសារសារ...",
         form_submit: "បញ្ជូនសារឥឡូវនេះ",
+        qr_title: "ស្កេន QR ដើម្បីទាក់ទងតាម Telegram",
+        qr_desc: "ស្កេនដោយទូរស័ព្ទ ឬចុចដើម្បីបើក Telegram ផ្ទាល់។",
         footer_text: "© 2026 Ma Vy. រក្សាសិទ្ធិគ្រប់យ៉ាង។ រចនា និងអភិវឌ្ឍដោយភាពប្រណីត។"
     },
     en: {
@@ -101,54 +103,56 @@ const translations = {
         form_email: "Your Email",
         form_msg: "Write your message here...",
         form_submit: "Send Message Now",
+        qr_title: "Scan to chat on Telegram",
+        qr_desc: "Scan with your phone or tap to open Telegram directly.",
         footer_text: "© 2026 Ma Vy. All rights reserved. Designed and developed with precision."
     }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    AOS.init({ once: true, offset: 50, easing: 'ease-in-out' });
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (innerWidth < 900) document.querySelectorAll('[data-aos="fade-right"],[data-aos="fade-left"],[data-aos="fade-down"]').forEach(el => el.setAttribute('data-aos', 'fade-up'));
+    AOS.init({ once: true, offset: 40, duration: 750, easing: 'ease-out-cubic', disable: reduceMotion });
 
-    // 🌟 Matrix Hacker Code Rain Animation
+    // Code rain (throttled, rAF, pauses when tab hidden)
     const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
+    const small = innerWidth < 768;
+    const fontSize = small ? 20 : 24;
+    const frameGap = small ? 70 : 50;
+    const characters = "កខគឃងចឆជឈញដថឌឍណតថទធនបផពភមយរលវសហឡអ" + "01QBCoreLuaNodeJS(true);#$*&";
+    let drops = [], color = '#3b82f6', last = 0, tick = 0, rafId = 0;
 
     function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const khmerChars = "កខគឃងចឆជឈញដថឌឍណតថទធនបផពភមយរលវសហឡអឦឧឩឪឫឬឭឮឯឱឲឰ";
-    const codeChars = "01QBCoreLuaNodeJSfunction(true);admin#$*&";
-    const characters = khmerChars + codeChars;
-
-    const fontSize = 24;
-    let columns = Math.floor(canvas.width / fontSize);
-    let drops = [];
-    for (let i = 0; i < columns; i++) {
-        drops[i] = 1;
-    }
-
-    function drawMatrixRain() {
-        ctx.fillStyle = "rgba(3, 7, 18, 0.1)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        const themeColor = getComputedStyle(document.body).getPropertyValue('--accent-color').trim() || '#3b82f6';
-        ctx.fillStyle = themeColor;
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+        drops = Array.from({ length: Math.floor(canvas.width / fontSize) }, () => -Math.floor(Math.random() * 40));
         ctx.font = "bold " + fontSize + "px 'Kantumruy Pro', monospace";
+    }
+    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resizeCanvas, 200); });
+    resizeCanvas();
 
+    function drawMatrixRain(t) {
+        rafId = requestAnimationFrame(drawMatrixRain);
+        if (t - last < frameGap) return;
+        last = t;
+        if (tick++ % 40 === 0) color = getComputedStyle(document.body).getPropertyValue('--accent-color').trim() || color;
+        ctx.fillStyle = "rgba(3, 7, 18, 0.12)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = color;
         for (let i = 0; i < drops.length; i++) {
-            const text = characters.charAt(Math.floor(Math.random() * characters.length));
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
+            ctx.fillText(characters.charAt(Math.floor(Math.random() * characters.length)), i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
             drops[i]++;
         }
     }
-    setInterval(drawMatrixRain, 40);
+    if (!reduceMotion) {
+        rafId = requestAnimationFrame(drawMatrixRain);
+        document.addEventListener('visibilitychange', () => {
+            cancelAnimationFrame(rafId);
+            if (!document.hidden) rafId = requestAnimationFrame(drawMatrixRain);
+        });
+    }
 
     // Theme Switcher Logic
     const colorDots = document.querySelectorAll('.color-dot');
@@ -274,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             question: "៨. តើខែណាមួយក្នុងឆ្នាំដែលមានរយៈពេលត្រឹមតែ ២៨ ឬ ២៩ ថ្ងៃ?",
             options: ["ខែ កុម្ភៈ", "ខែ មេសា", "ខែ ធ្នូ", "គ្រប់ខែទាំងអស់មានថ្ងៃ ២៨"],
-            correct: 3
+            correct: 0
         },
         {
             question: "៩. បើទា៣ក្បាលពងបានស៊ុត៣គ្រាប់ក្នុងរយៈពេល៣ថ្ងៃ តើទា១២ក្បាលពងបានស៊ុតប៉ុន្មានគ្រាប់ក្នុងរយៈពេល១២ថ្ងៃ?",
@@ -288,8 +292,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             question: "១១. ប្រសិនបើនាឡិកាជញ្ជាំងរោទ៍ម៉ោង១២ថ្ងៃត្រង់ ចំណាយពេល ៣វិនាទីក្នុងការវាយសំឡេង ១២ដង តើវាត្រូវចំណាយពេលប៉ុន្មានវិនាទីក្នុងការវាយសំឡេង ៦ដង?",
-            options: ["១.៥ វិនាទី", "១.៦៤ វិនាទី", "១.៥ វិនាទី", "៣ វិនាទី"],
-            correct: 1
+            options: ["១.៣៦ វិនាទី", "១.៥ វិនាទី", "១.៦៤ វិនាទី", "៣ វិនាទី"],
+            correct: 0
         },
         {
             question: "១២. ឪពុករបស់ដេវីឌមានកូនប្រុស ៥នាក់៖ ឆាស្មី, អេក, អាយ, អូ និង... តើកូនប្រុសទីប្រាំឈ្មោះអ្វី?",
