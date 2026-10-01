@@ -14,7 +14,7 @@
     <!-- Open Graph / Social Media Sharing Tags -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Ma Vy | Elite Software Developer & System Administrator">
-    <meta property="og:description" content="Explore my projects, professional skills in backend systems, Lua scripting, automation, and play the 20-Question Khmer IQ Game.">
+    <meta property="og:description" content="Explore my projects, professional skills in backend systems, Lua scripting, automation, and play 5 mini-games.">
     <meta property="og:image" content="LOGO-2.png">
 
     <!-- Stylesheets -->
@@ -80,7 +80,7 @@
                 <a href="#skills" data-i18n="nav_skills">ជំនាញ</a>
                 <a href="#techstack" data-i18n="nav_techstack">បច្ចេកវិទ្យា</a>
                 <a href="#projects" data-i18n="nav_projects">ស្នាដៃ</a>
-                <a href="#iqgame" data-i18n="nav_game">ល្បែងIQ (២០សំណួរ)</a>
+                <a href="#iqgame" data-i18n="nav_game">ល្បែង Arcade</a>
                 <a href="#contact" class="nav-contact-btn" data-i18n="nav_contact">ទំនាក់ទំនង</a>
             </nav>
         </header>
@@ -98,7 +98,7 @@
                 </p>
                 <div class="hero-cta">
                     <a href="#projects" class="btn-glow" data-i18n="btn_projects">ស្វែងរកស្នាដៃ</a>
-                    <a href="#iqgame" class="btn-glass" data-i18n="btn_game">លេងហ្គេម IQ ២០ សំណួរ</a>
+                    <a href="#iqgame" class="btn-glass" data-i18n="btn_game">លេងហ្គេមឥឡូវនេះ</a>
                 </div>
             </div>
             <div class="hero-image-box" data-aos="fade-left" data-aos-duration="1000">
@@ -284,39 +284,25 @@
             </div>
         </section>
 
-        <!-- IQ Quiz Game Section (20 Questions Khmer & Logic) -->
+        <!-- Arcade Section -->
         <section class="iq-game-section" id="iqgame" data-aos="fade-up" data-aos-duration="1000">
             <div class="iq-game-card glow-card">
                 <div class="mouse-glow"></div>
                 <div class="iq-header">
-                    <span class="iq-badge" data-i18n="iq_badge">CYBERNETIC IQ CHALLENGE (២០ សំណួរ)</span>
-                    <h2 data-i18n="iq_title">ល្បែងសំណួរចម្លើយល្បងប្រាជ្ញា និងឡូស៊ិកបែបខ្មែរ</h2>
-                    <p data-i18n="iq_desc">តើខួរក្បាល System Expert របស់អ្នកខ្លាំងកម្រិតណា? សាកល្បងឆ្លើយសំណួរល្បងប្រាជ្ញាចំនួន ២០ ខាងក្រោមនេះ!</p>
+                    <span class="iq-badge">ARCADE ZONE · 5 GAMES</span>
+                    <h2 data-i18n="arcade_title">ជ្រើសរើសហ្គេម ហើយបំបែកកំណត់ត្រា!</h2>
+                    <p data-i18n="arcade_desc">ហ្គេមតូចៗ ៥ ប្រភេទ៖ ចងចាំ ចាប់មេរោគ ពស់ ល្បងប្រាជ្ញា និងវាយអក្សរលឿន។</p>
                 </div>
-
-                <div class="quiz-box" id="quizBox">
-                    <div class="quiz-start-screen" id="quizStartScreen">
-                        <div class="quiz-icon-pulse">🧠</div>
-                        <h3 data-i18n="quiz_ready">រួចរាល់ដើម្បីផ្ទៀងផ្ទាត់កម្រិត IQ ២០ សំណួររបស់អ្នកឬនៅ?</h3>
-                        <p data-i18n="quiz_rules">មានសំណួរចំនួន ២០ ដែលទាក់ទងនឹងប្រាជ្ញាស្មារតី ភាសា និងឡូស៊ិក។</p>
-                        <button class="btn-glow" id="startQuizBtn" data-i18n="quiz_start_btn">ចាប់ផ្តើមលេង ២០ សំណួរឥឡូវនេះ</button>
-                    </div>
-
-                    <div class="quiz-question-screen" id="quizQuestionScreen" style="display: none;">
-                        <div class="quiz-progress-bar-row">
-                            <span id="questionCounter">សំណួរទី ១ ក្នុងចំណោម ២០</span>
-                            <span id="quizScoreTracker">ពិន្ទុ: 0</span>
-                        </div>
-                        <h3 id="questionText" class="question-text">សំនួរនឹងបង្ហាញនៅទីនេះ...</h3>
-                        <div class="options-grid" id="optionsGrid"></div>
-                    </div>
-
-                    <div class="quiz-result-screen" id="quizResultScreen" style="display: none;">
-                        <div class="result-trophy">🏆</div>
-                        <h3 data-i18n="quiz_done">លទ្ធផលតេស្ត IQ ២០ សំណួររបស់អ្នក</h3>
-                        <p id="resultMessage" class="result-message-text">អ្នកទទួលបានពិន្ទុ...</p>
-                        <button class="btn-glow" id="restartQuizBtn" data-i18n="quiz_restart_btn">លេងម្តងទៀត</button>
-                    </div>
+                <div class="g-tabs">
+                    <button class="g-tab" data-g="memory">🃏 Memory</button>
+                    <button class="g-tab" data-g="tap">🐞 Bug Hunt</button>
+                    <button class="g-tab" data-g="snake">🐍 Snake</button>
+                    <button class="g-tab" data-g="quiz">🧠 Quiz</button>
+                    <button class="g-tab" data-g="type">⌨️ Typing</button>
+                </div>
+                <div class="g-wrap">
+                    <div class="g-best" id="gameBest"></div>
+                    <div class="g-stage" id="gameStage"></div>
                 </div>
             </div>
         </section>
@@ -374,6 +360,7 @@
         <!-- Footer -->
         <footer class="site-footer" data-aos="fade" data-aos-duration="800">
             <p data-i18n="footer_text">&copy; 2026 Ma Vy. រក្សាសិទ្ធិគ្រប់យ៉ាង។ រចនា និងអភិវឌ្ឍដោយភាពប្រណីត។</p>
+        <a class="admin-link" href="admin.html">⚙ Admin</a>
         </footer>
 
     </div>
@@ -381,7 +368,12 @@
     <!-- AOS Animation Library JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Script File -->
+    <script src="config-data.js"></script>
+    <script src="config.js"></script>
     <script src="script.js"></script>
     <script src="smooth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="site.js"></script>
+    <script src="games.js"></script>
 </body>
 </html>

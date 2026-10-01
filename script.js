@@ -5,7 +5,7 @@ const translations = {
         nav_skills: "ជំនាញ",
         nav_techstack: "បច្ចេកវិទ្យា",
         nav_projects: "ស្នាដៃ",
-        nav_game: "ល្បែងIQ (២០សំណួរ)",
+        nav_game: "ល្បែង Arcade",
         nav_contact: "ទំនាក់ទំនង",
         hero_badge: "Available for Hire & System Admin",
         hero_title_1: "កសាងប្រព័ន្ធឌីជីថល",
@@ -13,7 +13,7 @@ const translations = {
         hero_title_3: "ឥទ្ធិពល",
         hero_desc: "សួស្តី! ខ្ញុំឈ្មោះ Ma Vy។ មានជំនាញច្បាស់លាស់ក្នុងការអភិវឌ្ឍប្រព័ន្ធ កែសម្រួលស្គ្រីប និងការគ្រប់គ្រងម៉ាស៊ីនបម្រើ (Server) កម្រិតខ្ពស់។",
         btn_projects: "ស្វែងរកស្នាដៃ",
-        btn_game: "លេងហ្គេម IQ ២០ សំណួរ",
+        btn_game: "លេងហ្គេមឥឡូវនេះ",
         work_status_title: "ស្ថានភាពការងារ",
         work_status_sub: "Ready for Projects",
         about_title: "ទស្សនវិស័យ និងការតាំងចិត្ត",
@@ -49,6 +49,10 @@ const translations = {
         form_email: "អ៊ីមែលរបស់អ្នក",
         form_msg: "សរសេរខ្លឹមសារសារ...",
         form_submit: "បញ្ជូនសារឥឡូវនេះ",
+        arcade_title: "ជ្រើសរើសហ្គេម ហើយបំបែកកំណត់ត្រា!",
+        arcade_desc: "ហ្គេមតូចៗ ៥ ប្រភេទ៖ ចងចាំ ចាប់មេរោគ ពស់ ល្បងប្រាជ្ញា និងវាយអក្សរលឿន។",
+        arcade_title: "Pick a game & beat the record!",
+        arcade_desc: "5 mini-games: memory, bug hunt, snake, brain quiz and speed typing.",
         qr_title: "ស្កេន QR ដើម្បីទាក់ទងតាម Telegram",
         qr_desc: "ស្កេនដោយទូរស័ព្ទ ឬចុចដើម្បីបើក Telegram ផ្ទាល់។",
         footer_text: "© 2026 Ma Vy. រក្សាសិទ្ធិគ្រប់យ៉ាង។ រចនា និងអភិវឌ្ឍដោយភាពប្រណីត។"
@@ -59,7 +63,7 @@ const translations = {
         nav_skills: "Skills",
         nav_techstack: "Tech Stack",
         nav_projects: "Projects",
-        nav_game: "IQ Game (20 Q)",
+        nav_game: "Arcade",
         nav_contact: "Contact",
         hero_badge: "Available for Hire & System Admin",
         hero_title_1: "Building Digital Systems",
@@ -67,7 +71,7 @@ const translations = {
         hero_title_3: "Software",
         hero_desc: "Hello! I'm Ma Vy. Specializing in advanced system development, script optimization, and professional server administration.",
         btn_projects: "Explore Projects",
-        btn_game: "Play 20-Q IQ Game",
+        btn_game: "Play Games",
         work_status_title: "Work Status",
         work_status_sub: "Ready for Projects",
         about_title: "Vision & Dedication",
@@ -108,6 +112,9 @@ const translations = {
         footer_text: "© 2026 Ma Vy. All rights reserved. Designed and developed with precision."
     }
 };
+
+const _ov = window.SITE_OVERRIDES && window.SITE_OVERRIDES.tr;
+if (_ov) for (const l in _ov) Object.assign(translations[l] || {}, Object.fromEntries(Object.entries(_ov[l]).filter(([, v]) => v)));
 
 document.addEventListener('DOMContentLoaded', () => {
     const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -237,198 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-
-    // 🌟 Full 20 Khmer IQ & Logic Questions Game Data
-    const quizData = [
-        {
-            question: "១. តើលេខបន្តបន្ទាប់ក្នុងស្វ៊ីស (Series) មួយនេះគឺលេខអ្វី? 2, 4, 8, 16, ...",
-            options: ["20", "24", "32", "64"],
-            correct: 2
-        },
-        {
-            question: "២. បើបងប្រុសអាយុ ១០ឆ្នាំ ពេលដែលប្អូនស្រីមានអាយុ៥ឆ្នាំ (ពាក់កណ្តាលអាយុបង)។ បើសិនជាបងប្រុសអាយុ ៤០ឆ្នាំ តើប្អូនស្រីមានអាយុប៉ុន្មាន?",
-            options: ["20ឆ្នាំ", "30ឆ្នាំ", "35ឆ្នាំ", "40ឆ្នាំ"],
-            correct: 2
-        },
-        {
-            question: "៣. តើអ្វីទៅដែលមានភ្នែក១ តែមើលមិនឃើញ មានមាត់តែនិយាយមិនកើត?",
-            options: ["កូនកាំបិត", "ម្ជុលដេរខោអាវ", "កញ្ចក់ឆ្លុះមុខ", "តុក្កតា"],
-            correct: 1
-        },
-        {
-            question: "៤. ប្រសិនបើអ្នកមានប្រអប់ចំនួន ៣៖ មួយដាក់ផ្លែប៉ោម មួយដាក់ផ្លែក្រូច និងមួយទៀតដាក់លាយគ្នា ប៉ុន្តែស្លាកសញ្ញាលើប្រអប់ខុសទាំងអស់។ តើត្រូវបើកប្រអប់ណាដើម្បីដឹងច្បាស់?",
-            options: ["ប្រអប់ដាក់ផ្លែប៉ោម", "ប្រអប់ដាក់ផ្លែក្រូច", "ប្រអប់ដាក់លាយគ្នា", "បើកទាំងបីប្រអប់"],
-            correct: 2
-        },
-        {
-            question: "៥. តើភាសាសរសេរកូដណាមួយខាងក្រោមនេះ ដែលត្រូវបានគេនិយមប្រើប្រាស់ខ្លាំងជាងគេក្នុងការបង្កើតប្រព័ន្ធ QBCore/FiveM Scripts?",
-            options: ["Python", "Lua", "C++", "Java"],
-            correct: 1
-        },
-        {
-            question: "៦. ប្រសិនបើមានសត្វបក្សីចំនួន ៥ កំពុងតោងនៅលើមែកឈើ ហើយអ្នកបាញ់ត្រូវ១ធ្លាក់ស្លាប់ តើនៅសល់សត្វបក្សីប៉ុន្មាននៅលើមែកឈើ?",
-            options: ["៤", "៣", "២", "០"],
-            correct: 3
-        },
-        {
-            question: "៧. តើអ្វីទៅដែលកាន់តែជូតកាន់តែខ្វក់ និងកាន់តែប្រើកាន់តែខ្លីទៅ?",
-            options: ["ក្រដាសអនាម័យ", "អំបោស", "កៅស៊ូលុបខ្មៅដៃ", "ទៀនខ្សាច់"],
-            correct: 2
-        },
-        {
-            question: "៨. តើខែណាមួយក្នុងឆ្នាំដែលមានរយៈពេលត្រឹមតែ ២៨ ឬ ២៩ ថ្ងៃ?",
-            options: ["ខែ កុម្ភៈ", "ខែ មេសា", "ខែ ធ្នូ", "គ្រប់ខែទាំងអស់មានថ្ងៃ ២៨"],
-            correct: 0
-        },
-        {
-            question: "៩. បើទា៣ក្បាលពងបានស៊ុត៣គ្រាប់ក្នុងរយៈពេល៣ថ្ងៃ តើទា១២ក្បាលពងបានស៊ុតប៉ុន្មានគ្រាប់ក្នុងរយៈពេល១២ថ្ងៃ?",
-            options: ["12 គ្រាប់", "24 គ្រាប់", "48 គ្រាប់", "144 គ្រាប់"],
-            correct: 2
-        },
-        {
-            question: "១០. តើអ្វីទៅដើរដោយប្រើជើងទាំងបួននៅពេលព្រឹក ជើងពីរនៅពេលថ្ងៃ និងជើងបីនៅពេលយប់?",
-            options: ["មនុស្ស", "សត្វតោ", "សត្វស្វា", "ទន្សាយ"],
-            correct: 0
-        },
-        {
-            question: "១១. ប្រសិនបើនាឡិកាជញ្ជាំងរោទ៍ម៉ោង១២ថ្ងៃត្រង់ ចំណាយពេល ៣វិនាទីក្នុងការវាយសំឡេង ១២ដង តើវាត្រូវចំណាយពេលប៉ុន្មានវិនាទីក្នុងការវាយសំឡេង ៦ដង?",
-            options: ["១.៣៦ វិនាទី", "១.៥ វិនាទី", "១.៦៤ វិនាទី", "៣ វិនាទី"],
-            correct: 0
-        },
-        {
-            question: "១២. ឪពុករបស់ដេវីឌមានកូនប្រុស ៥នាក់៖ ឆាស្មី, អេក, អាយ, អូ និង... តើកូនប្រុសទីប្រាំឈ្មោះអ្វី?",
-            options: ["យូ (U)", "ដេវីឌ (David)", "ប៊ី (B)", "ថូម៉ាស (Thomas)"],
-            correct: 1
-        },
-        {
-            question: "១៣. តើមានខែចំនួនប៉ុន្មានក្នុងមួយឆ្នាំដែលមានថ្ងៃចំនួន ២៨ថ្ងៃ?",
-            options: ["១ ខែ", "២ ខែ", "៦ ខែ", "១២ ខែ"],
-            correct: 3
-        },
-        {
-            question: "១៤. បើអ្នករត់ប្រណាំងក្នុងចំណោមមនុស្សជាច្រើន ហើយអ្នករត់វ៉ាដាច់អ្នកលេខ២ តើឥឡូវនេះអ្នកស្ថិតនៅលេខប៉ុន្មាន?",
-            options: ["លេខ ១", "លេខ ២", "លេខ ៣", "លេខ ស្មើគ្នា"],
-            correct: 1
-        },
-        {
-            question: "១៥. តើអ្វីទៅដែលមានរាងមូលដូចបាល់ តែគ្មានខ្យល់ និងអាចបញ្ចេញពន្លឺបំភ្លឺពេលយប់?",
-            options: ["ព្រះអាទិត្យ", "ព្រះច័ន្ទ", "អំពូលភ្លើង", "ភពផែនដី"],
-            correct: 1
-        },
-        {
-            question: "១៦. បើប្រអប់មួយមានបាល់ពណ៌ក្រហម៥ និងបាល់ពណ៌ខៀវ៥ តើត្រូវចាប់បាល់យ៉ាងហោចណាស់ប៉ុន្មានគ្រាប់ដើម្បីប្រាកដថាបានបាល់ពណ៌ដូចគ្នាយ៉ាងតិច២គ្រាប់?",
-            options: ["២ គ្រាប់", "៣ គ្រាប់", "៦ គ្រាប់", "១០ គ្រាប់"],
-            correct: 1
-        },
-        {
-            question: "១៧. តើស្គ្រីប ឬហ្វាលកូដប្រភេទណាដែលរត់នៅលើម៉ាស៊ីនបម្រើផ្ទាល់ (Server-Side) ក្នុងប្រព័ន្ធ FiveM/QBCore?",
-            options: ["HTML / CSS", "Client Lua", "Server Lua", "Browser JS"],
-            correct: 2
-        },
-        {
-            question: "១៨. តើអ្វីទៅដែលកាលណាយើងបុកវាកាន់តែខ្លាំង វាតែងតែលោតខ្ពស់មកវិញកាន់តែខ្លាំង?",
-            options: ["បាល់កៅស៊ូ (Rubber Ball)", "ខ្នើយកើយ", "ទឹក", "កញ្ចក់"],
-            correct: 0
-        },
-        {
-            question: "១៩. បើកូនឆ្មា២ក្បាលចាប់កណ្តុរ២ក្បាលបានក្នុងរយៈពេល២នាទី តើកូនឆ្មា២០ក្បាលត្រូវការពេលប៉ុន្មាននាទីដើម្បីចាប់កណ្តុរ២០ក្បាល?",
-            options: ["២០ នាទី", "១០ នាទី", "២ នាទី", "១ នាទី"],
-            correct: 2
-        },
-        {
-            question: "២០. តើលេខកូដទ្វារណាមួយខាងក្រោមដែលធានាបាននូវសុវត្ថិភាពខ្ពស់បំផុតសម្រាប់ការពារប្រព័ន្ធ System Admin?",
-            options: ["123456", "password", "Secure Hash (SHA-256)", "admin123"],
-            correct: 2
-        }
-    ];
-
-    let currentQuestionIndex = 0;
-    let score = 0;
-
-    const quizStartScreen = document.getElementById('quizStartScreen');
-    const quizQuestionScreen = document.getElementById('quizQuestionScreen');
-    const quizResultScreen = document.getElementById('quizResultScreen');
-    const startQuizBtn = document.getElementById('startQuizBtn');
-    const restartQuizBtn = document.getElementById('restartQuizBtn');
-    const questionText = document.getElementById('questionText');
-    const optionsGrid = document.getElementById('optionsGrid');
-    const questionCounter = document.getElementById('questionCounter');
-    const quizScoreTracker = document.getElementById('quizScoreTracker');
-    const resultMessage = document.getElementById('resultMessage');
-
-    if (startQuizBtn) {
-        startQuizBtn.addEventListener('click', () => {
-            quizStartScreen.style.display = 'none';
-            quizQuestionScreen.style.display = 'block';
-            currentQuestionIndex = 0;
-            score = 0;
-            loadQuestion();
-        });
-    }
-
-    if (restartQuizBtn) {
-        restartQuizBtn.addEventListener('click', () => {
-            quizResultScreen.style.display = 'none';
-            quizStartScreen.style.display = 'block';
-        });
-    }
-
-    function loadQuestion() {
-        const currentQ = quizData[currentQuestionIndex];
-        questionCounter.textContent = `សំណួរទី ${currentQuestionIndex + 1} ក្នុងចំណោម ${quizData.length}`;
-        quizScoreTracker.textContent = `ពិន្ទុ: ${score}`;
-        questionText.textContent = currentQ.question;
-        optionsGrid.innerHTML = '';
-
-        currentQ.options.forEach((opt, index) => {
-            const btn = document.createElement('button');
-            btn.classList.add('option-btn');
-            btn.textContent = opt;
-            btn.addEventListener('click', () => selectOption(index, btn));
-            optionsGrid.appendChild(btn);
-        });
-    }
-
-    function selectOption(selectedIndex, selectedBtn) {
-        const currentQ = quizData[currentQuestionIndex];
-        const allButtons = optionsGrid.querySelectorAll('.option-btn');
-
-        allButtons.forEach(b => b.disabled = true);
-
-        if (selectedIndex === currentQ.correct) {
-            selectedBtn.classList.add('correct');
-            score += 5; // 20 questions * 5 = 100 max points
-        } else {
-            selectedBtn.classList.add('wrong');
-            allButtons[currentQ.correct].classList.add('correct');
-        }
-
-        setTimeout(() => {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < quizData.length) {
-                loadQuestion();
-            } else {
-                showResult();
-            }
-        }, 1200);
-    }
-
-    function showResult() {
-        quizQuestionScreen.style.display = 'none';
-        quizResultScreen.style.display = 'block';
-
-        let performanceText = "";
-        if (score === 100) {
-            performanceText = `អស្ចារ្យណាស់! អ្នកទទួលបាន ${score}/100 ពិន្ទុ។ ខួរក្បាលរបស់អ្នកកម្រិត Genius (System Expert)!`;
-        } else if (score >= 70) {
-            performanceText = `ល្អប្រសើរខ្លាំងណាស់! អ្នកទទួលបាន ${score}/100 ពិន្ទុ។ អ្នកមានការគិតបែបឡូស៊ិកនិងប្រាជ្ញាឈ្លាសវៃខ្ពស់!`;
-        } else if (score >= 40) {
-            performanceText = `មធ្យម! អ្នកទទួលបាន ${score}/100 ពិន្ទុ។ សូមព្យាយាមម្តងទៀតដើម្បីយកពិន្ទុពេញ!`;
-        } else {
-            performanceText = `អ្នកទទួលបាន ${score}/100 ពិន្ទុ។ សូមសាកល្បងលេងម្តងទៀតដើម្បីពង្រឹងកម្រិត IQ របស់អ្នក!`;
-        }
-        resultMessage.textContent = performanceText;
-    }
 
     // Mouse Spotlight Effect
     const glowCards = document.querySelectorAll('.glow-card');

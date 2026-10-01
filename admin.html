@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="km"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><meta name="theme-color" content="#030712">
+<title>Admin | Ma Vy</title>
+<link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="smooth.css">
+<style>
+.gate{min-height:100vh;display:grid;place-items:center;padding:1rem}.gate-card{width:min(380px,100%);display:flex;flex-direction:column;gap:1rem;text-align:center}
+.adm-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;padding:.8rem 1.25rem;position:sticky;top:0;z-index:20;background:rgba(10,15,28,.94);border-bottom:1px solid var(--border-glass)}
+.adm-top button,.adm-top a,.pv-bar button{padding:.55rem 1rem;border-radius:12px;font:600 .85rem inherit;font-family:inherit;cursor:pointer;color:#fff;display:inline-block;text-decoration:none;border:1px solid var(--border-glass);background:rgba(255,255,255,.05)}
+.adm-top .btn-glow{border:0}
+.adm-grid{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:1.25rem;padding:1.25rem;max-width:1500px;margin:0 auto;position:relative;z-index:2}
+.adm-tabs{display:flex;gap:.5rem;overflow-x:auto;margin-bottom:1rem;padding-bottom:.25rem}
+.adm-tabs button{white-space:nowrap;padding:.6rem 1.1rem;border-radius:50px;border:1px solid var(--border-glass);background:rgba(255,255,255,.03);color:var(--text-muted);font:600 .9rem inherit;font-family:inherit;cursor:pointer;transition:all .3s}
+.adm-tabs button.on{background:var(--accent-glow);color:var(--accent-color);border-color:var(--accent-color)}
+.adm-card{background:var(--card-surface);border:1px solid var(--border-glass);border-radius:24px;padding:clamp(1rem,3vw,2rem);animation:fadeUp .4s var(--ease)}
+.f{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}.f label{font-size:.8rem;color:var(--text-muted);font-weight:600}
+.f input,.f textarea,.f select{background:rgba(3,7,18,.6);border:1px solid var(--border-glass);border-radius:12px;padding:.8rem 1rem;color:#fff;font:inherit;outline:none;width:100%}
+.f input:focus,.f textarea:focus,.f select:focus{border-color:var(--accent-color);box-shadow:0 0 16px var(--accent-glow)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.chk{display:flex;gap:.6rem;align-items:center;margin-bottom:.9rem;cursor:pointer}.chk input{width:20px;height:20px;accent-color:var(--accent-color)}
+.hint{color:var(--text-muted);font-size:.8rem;line-height:1.7;margin-bottom:1rem}
+.adm-card h3{margin-bottom:1rem}.adm-card .btn-glow,.adm-card .btn-glass{padding:.7rem 1.3rem;font-family:inherit;margin:0 .5rem .6rem 0;display:inline-block}
+.adm-prev{position:sticky;top:76px;align-self:start}.pv-bar{display:flex;gap:.5rem;margin-bottom:.6rem}
+.pv-frame{border:1px solid var(--border-glass);border-radius:20px;overflow:hidden;background:#000;height:72vh;display:flex;justify-content:center}
+.pv-frame iframe{border:0;width:100%;height:100%;transition:width .5s var(--ease);background:#030712}
+.toast{position:fixed;bottom:1.25rem;left:50%;transform:translate(-50%,30px);opacity:0;background:#0e1424;border:1px solid var(--accent-color);padding:.8rem 1.4rem;border-radius:14px;z-index:99;transition:all .4s var(--ease);pointer-events:none}.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1100px){.adm-grid{grid-template-columns:1fr}.adm-prev{display:none}}@media(max-width:600px){.row2{grid-template-columns:1fr}}
+</style></head>
+<body data-theme-color="blue">
+<div class="ambient-glow glow-1"></div><div class="ambient-glow glow-2"></div>
+<main class="gate" id="gate"><form class="bento-box gate-card" id="gf"><h2>🔐 Admin Panel</h2><p class="hint" id="gmsg"></p>
+<div class="input-group"><input type="password" id="gp" placeholder="Password" minlength="4" required></div><button class="btn-glow full-w">→</button></form></main>
+<div id="app" hidden>
+ <header class="adm-top"><b>⚙ Admin Panel</b><div><a href="index.html" target="_blank">↗ មើល Site</a> <button class="btn-glow" id="save">💾 Save</button> <button id="out">Logout</button></div></header>
+ <div class="adm-grid"><section><nav class="adm-tabs" id="tabs"></nav><div class="adm-card" id="panel"></div></section>
+ <aside class="adm-prev"><div class="pv-bar"><button data-w="100%">💻</button><button data-w="390px">📱</button><button id="rl">↻</button></div><div class="pv-frame"><iframe id="pv" src="index.html" title="preview"></iframe></div></aside></div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="config-data.js"></script><script src="config.js"></script>
+<script>
+const $=s=>document.querySelector(s),K='site_config';
+let C=JSON.parse(JSON.stringify(window.SITE_OVERRIDES||{}));
+const sha=async s=>crypto.subtle?[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))].map(b=>b.toString(16).padStart(2,'0')).join(''):btoa(s);
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)};
+const get=p=>p.split('.').reduce((o,k)=>o&&o[k],C);
+const set=(p,v)=>{const a=p.split('.');let o=C;a.slice(0,-1).forEach(k=>o=o[k]=o[k]||{});o[a.pop()]=v};
+const esc=s=>String(s??'').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+const inp=(p,l,ph='')=>`<div class="f"><label>${l}</label><input data-p="${p}" value="${esc(p==='roles'?(get(p)||[]).join(', '):get(p))}" placeholder="${ph}"></div>`;
+const ta=(p,l)=>`<div class="f"><label>${l}</label><textarea rows="3" data-p="${p}">${esc(get(p))}</textarea></div>`;
+const chk=(p,l)=>`<label class="chk"><input type="checkbox" data-p="${p}" ${get(p)!==false?'checked':''}> ${l}</label>`;
+const TR=[['hero_badge','Hero badge'],['hero_title_1','Hero title 1'],['hero_title_2','Hero title 2'],['hero_title_3','Hero title 3 (gradient)'],['hero_desc','Hero description',1],['about_title','About title'],['about_desc','About text',1],['exp_position','Position'],['exp_desc','Experience text',1],['contact_heading','Contact heading'],['contact_desc','Contact text',1],['footer_text','Footer']];
+const quizTxt=()=>(C.quiz||[]).map(q=>`${q[0]} | ${q[1].join(';')} | ${q[2]+1}`).join('\n');
+const T={
+ general:['🌐 ទូទៅ',()=>inp('brand','ឈ្មោះ Brand','MA VY')+inp('siteUrl','Site URL (សម្រាប់ QR គេហទំព័រ)','https://yourname.com')+inp('roles','Typing roles ក្នុង Hero (ចែកដោយ ,)','FiveM Developer, Lua Scripter')+inp('banner.text','📢 ប្រកាសលើកំពូលគេហទំព័រ (ទទេ = លាក់)')+`<div class="f"><label>ពណ៌លំនាំដើម</label><select data-p="theme">${['','blue','green','purple'].map(v=>`<option value="${v}" ${get('theme')===v||(!get('theme')&&!v)?'selected':''}>${v||'(លំនាំដើម)'}</option>`).join('')}</select></div>`+chk('flags.games','បង្ហាញផ្នែក Arcade')+chk('flags.rain','បង្ហាញភ្លៀងអក្សរ (Code Rain)')],
+ content:['✍️ អត្ថបទ',()=>`<p class="hint">ទទេ = ប្រើអត្ថបទលំនាំដើម។</p>`+TR.map(([k,l,t])=>`<div class="row2">${(t?ta:inp)('tr.km.'+k,l+' · KM')}${(t?ta:inp)('tr.en.'+k,l+' · EN')}</div>`).join('')],
+ links:['🔗 តំណ',()=>inp('links.email','Email','you@gmail.com')+inp('links.telegram','Telegram link','https://t.me/MAVY19000')+inp('links.github','GitHub link','https://github.com/ravendjproducer1-ops')+inp('links.linkedin','LinkedIn link','https://linkedin.com/in/...')],
+ games:['🎮 Quiz',()=>`<p class="hint">មួយបន្ទាត់ = មួយសំណួរ៖<br><code>សំណួរ | ចម្លើយA;ចម្លើយB;ចម្លើយC;ចម្លើយD | លេខចម្លើយត្រូវ (១-៤)</code><br>ទទេ = ប្រើសំណួរលំនាំដើម។ ហ្គេមបោះសំណួរចៃដន្យ ១០ ក្នុងមួយជុំ។</p><div class="f"><textarea id="quiz" rows="14" placeholder="2+2=? | 3;4;5;6 | 2">${esc(quizTxt())}</textarea></div>`],
+ backup:['💾 Backup',()=>`<h3>ផ្សព្វផ្សាយទៅអ្នកទស្សនាទាំងអស់</h3><p class="hint">ការ Save រក្សាទុកក្នុង browser របស់អ្នកតែប៉ុណ្ណោះ (សម្រាប់មើលជាមុន)។ ដើម្បីឱ្យអ្នកទស្សនាគ្រប់គ្នាឃើញ សូមទាញយក <b>config-data.js</b> ហើយជំនួសឯកសារដូចគ្នាក្នុងគេហទំព័រ រួច upload ឡើងវិញ។</p><button class="btn-glow" id="exp">⬇ ទាញយក config-data.js</button><button class="btn-glass" id="rst">🗑 Reset (local)</button><h3 style="margin-top:1.5rem">🔑 ប្តូរពាក្យសម្ងាត់</h3><div class="f"><input type="password" id="np" placeholder="ពាក្យសម្ងាត់ថ្មី (≥4)"></div><button class="btn-glass" id="cp">ប្តូរ</button><p class="hint">⚠ ពាក្យសម្ងាត់នេះការពារតែផ្ទាំងនេះក្នុង browser ប៉ុណ្ណោះ មិនមែនសុវត្ថិភាពពិតប្រាកដទេ។ ត្រូវការ backend ដើម្បីការពារពិតៗ។</p>`]
+};
+let tab='general';
+function render(){
+ $('#tabs').innerHTML=Object.entries(T).map(([k,[l]])=>`<button data-t="${k}" class="${k===tab?'on':''}">${l}</button>`).join('');
+ $('#panel').innerHTML=T[tab][1]();
+ const ex=$('#exp');if(ex){ex.onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([`window.SITE_DEFAULTS = ${JSON.stringify(C,null,2)};\n`],{type:'text/javascript'}));a.download='config-data.js';a.click();toast('⬇ config-data.js')};
+  $('#rst').onclick=()=>{if(confirm('Reset?')){localStorage.removeItem(K);C=JSON.parse(JSON.stringify(window.SITE_DEFAULTS||{}));render();reload();toast('Reset ✔')}};
+  $('#cp').onclick=async()=>{const v=$('#np').value;if(v.length<4)return toast('≥ 4');localStorage.setItem('admin_hash',await sha(v));toast('🔑 OK')}}
+}
+$('#tabs').onclick=e=>{const t=e.target.dataset.t;if(t){tab=t;render()}};
+$('#panel').addEventListener('input',e=>{const el=e.target,p=el.dataset.p;
+ if(el.id==='quiz'){C.quiz=el.value.split('\n').map(l=>l.split('|').map(s=>s.trim())).filter(a=>a.length===3&&a[0]).map(a=>[a[0],a[1].split(';').map(s=>s.trim()),Math.max(0,(+a[2]||1)-1)]);return}
+ if(!p)return;set(p,el.type==='checkbox'?el.checked:p==='roles'?el.value.split(',').map(s=>s.trim()).filter(Boolean):el.value)});
+const reload=()=>$('#pv').contentWindow.location.reload();
+const save=()=>{localStorage.setItem(K,JSON.stringify(C));reload();toast('✅ Saved')};
+$('#save').onclick=save;$('#rl').onclick=reload;
+addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='s'&&!$('#app').hidden){e.preventDefault();save()}});
+document.querySelectorAll('.pv-bar [data-w]').forEach(b=>b.onclick=()=>$('#pv').style.width=b.dataset.w);
+const enter=()=>{sessionStorage.setItem('adm','1');$('#gate').hidden=true;$('#app').hidden=false;render()};
+$('#out').onclick=()=>{sessionStorage.removeItem('adm');location.reload()};
+const H=localStorage.getItem('admin_hash');$('#gmsg').textContent=H?'បញ្ចូលពាក្យសម្ងាត់':'ចូលលើកដំបូង៖ បង្កើតពាក្យសម្ងាត់ថ្មី (≥4 តួ)';
+$('#gf').onsubmit=async e=>{e.preventDefault();const h=await sha($('#gp').value);if(!H){localStorage.setItem('admin_hash',h);enter()}else if(h===H)enter();else toast('❌ ពាក្យសម្ងាត់ខុស')};
+if(H&&sessionStorage.getItem('adm'))enter();
+</script></body></html>
