@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="km" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Vy | Elite Software Developer & System Administrator Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Official Portfolio of Ma Vy - Professional Software Developer, QBCore/FiveM Scripter, and System Administrator.">
+    <meta name="keywords" content="Ma Vy, Software Developer, System Administrator, FiveM Developer, QBCore, Lua, JavaScript, Web Portfolio">
+    <meta name="author" content="Ma Vy">
+
+    <!-- Open Graph / Social Media Sharing Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ma Vy | Elite Software Developer & System Administrator">
+    <meta property="og:description" content="Explore my projects, professional skills in backend systems, Lua scripting, automation, and play the 20-Question Khmer IQ Game.">
+    <meta property="og:image" content="LOGO-2.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profile.css">
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body data-theme-color="blue" data-lang="km">
+
+    <!-- 🌟 Khmer & Hacker Code Rain Canvas Background -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- Animated Background Motion Orbs -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
+
+    <div class="site-wrapper">
+
+        <!-- Top Navigation / Header -->
+        <header class="site-header" data-aos="fade-down" data-aos-duration="800">
+            <div class="brand-box">
+                <div class="brand-avatar">
+                    <img src="LOGO-2.png" alt="Ma Vy">
+                </div>
+                <span class="brand-name">MA VY <span class="dot">.</span></span>
+            </div>
+
+            <!-- Global Live Status Badge for Header -->
+            <div class="header-status-indicator">
+                <span class="status-pulse"></span>
+                <span class="status-text" data-i18n="servers_status">Servers Operational: 100%</span>
+            </div>
+
+            <div class="header-controls">
+                <!-- Language Switcher Toggle -->
+                <div class="lang-switcher" id="langSwitchBtn" title="ប្តូរភាសា / Change Language">
+                    <span class="lang-badge active" data-lang-val="km">ខ្មែរ</span>
+                    <span class="lang-divider">/</span>
+                    <span class="lang-badge" data-lang-val="en">EN</span>
+                </div>
+
+                <!-- Interactive Accent Color Switcher -->
+                <div class="theme-switcher">
+                    <span class="switcher-label">Theme:</span>
+                    <button class="color-dot blue active" data-color="blue" title="Cyber Blue"></button>
+                    <button class="color-dot green" data-color="green" title="Matrix Green"></button>
+                    <button class="color-dot purple" data-color="purple" title="Neon Purple"></button>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#about" data-i18n="nav_about">អំពីខ្ញុំ</a>
+                <a href="#skills" data-i18n="nav_skills">ជំនាញ</a>
+                <a href="#techstack" data-i18n="nav_techstack">បច្ចេកវិទ្យា</a>
+                <a href="#projects" data-i18n="nav_projects">ស្នាដៃ</a>
+                <a href="#iqgame" data-i18n="nav_game">ល្បែងIQ (២០សំណួរ)</a>
+                <a href="#contact" class="nav-contact-btn" data-i18n="nav_contact">ទំនាក់ទំនង</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <div class="live-badge">
+                    <span class="pulse-dot"></span>
+                    <span data-i18n="hero_badge">Available for Hire & System Admin</span>
+                </div>
+                <h1 class="hero-title"><span data-i18n="hero_title_1">កសាងប្រព័ន្ធឌីជីថល</span> <br><span data-i18n="hero_title_2">និងសូហ្វវែរដ៏មាន</span><span class="text-gradient" data-i18n="hero_title_3">ឥទ្ធិពល</span></h1>
+                <p class="hero-desc" data-i18n="hero_desc">
+                    សួស្តី! ខ្ញុំឈ្មោះ Ma Vy។ មានជំនាញច្បាស់លាស់ក្នុងការអភិវឌ្ឍប្រព័ន្ធ កែសម្រួលស្គ្រីប និងការគ្រប់គ្រងម៉ាស៊ីនបម្រើ (Server) កម្រិតខ្ពស់។
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn-glow" data-i18n="btn_projects">ស្វែងរកស្នាដៃ</a>
+                    <a href="#iqgame" class="btn-glass" data-i18n="btn_game">លេងហ្គេម IQ ២០ សំណួរ</a>
+                </div>
+            </div>
+            <div class="hero-image-box" data-aos="fade-left" data-aos-duration="1000">
+                <div class="image-frame-container">
+                    <div class="image-frame">
+                        <img src="LOGO-2.png" alt="Ma Vy Profile">
+                    </div>
+                    <!-- Live Server / Work Status Floating Badge -->
+                    <div class="floating-status-badge">
+                        <span class="status-dot-mini"></span>
+                        <div>
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bento Grid Main Showcase -->
+        <section class="bento-container">
+            
+            <!-- About Card -->
+            <div class="bento-box about-box glow-card" id="about" data-aos="fade-up" data-aos-duration="800">
+                <div class="mouse-glow"></div>
+                <h3 data-i18n="about_title">ទស្សនវិស័យ និងការតាំងចិត្ត</h3>
+                <p data-i18n="about_desc">ផ្តោតសំខាន់លើការសរសេរកូដស្អាត (Clean Code) សុវត្ថិភាពប្រព័ន្ធខ្ពស់ និងការបង្កើតបទពិសោធន៍ប្រើប្រាស់ដ៏រលូនបំផុតដោយមិនមានការរអាក់រអួល។</p>
+            </div>
+
+            <!-- Skills Card -->
+            <div class="bento-box skills-box glow-card" id="skills" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="mouse-glow"></div>
+                <h3 data-i18n="skills_title">បច្ចេកវិទ្យាជំនាញស្នូល</h3>
+                <div class="tech-pills">
+                    <span>Backend & Database</span>
+                    <span>Server Administration</span>
+                    <span>UI/UX Architecture</span>
+                    <span>Script Optimization</span>
+                    <span>System Security</span>
+                </div>
+            </div>
+
+            <!-- Experience Card -->
+            <div class="bento-box exp-box glow-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="mouse-glow"></div>
+                <h3 data-i18n="exp_title">បទពិសោធការងារ</h3>
+                <div class="exp-timeline">
+                    <span class="exp-badge" data-i18n="exp_badge">បច្ចុប្បន្ន</span>
+                    <h4 data-i18n="exp_position">Software Developer & System Administrator</h4>
+                    <p data-i18n="exp_desc">គ្រប់គ្រងប្រព័ន្ធម៉ាស៊ីនបម្រើ អភិវឌ្ឍន៍ និងកែសម្រួលកូដប្រព័ន្ធយ៉ាងមានសុវត្ថិភាព។</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Tech Stack & Skills Category Filter Section -->
+        <section class="techstack-section" id="techstack" data-aos="fade-up" data-aos-duration="1000">
+            <div class="techstack-header">
+                <h2 data-i18n="tech_section_title">ឃ្លាំងបច្ចេកវិទ្យា និងឧបករណ៍ជំនាញ (Tech Stack)</h2>
+                <p data-i18n="tech_section_desc">ឧបករណ៍ ភាសាសរសេរកូដ និងប្រព័ន្ធម៉ាស៊ីនបម្រើដែលខ្ញុំប្រើប្រាស់ក្នុងការអភិវឌ្ឍគម្រោងនានា។</p>
+                
+                <!-- Category Filter Buttons -->
+                <div class="tech-filter-buttons">
+                    <button class="filter-btn active" data-filter="all" data-i18n="filter_all">ទាំងអស់</button>
+                    <button class="filter-btn" data-filter="languages" data-i18n="filter_lang">ភាសាកូដ</button>
+                    <button class="filter-btn" data-filter="server" data-i18n="filter_server">ម៉ាស៊ីនបម្រើ & ប្រព័ន្ធ</button>
+                    <button class="filter-btn" data-filter="tools" data-i18n="filter_tools">ឧបករណ៍ & 3D</button>
+                </div>
+            </div>
+
+            <!-- Tech Grid Items -->
+            <div class="tech-grid">
+                <!-- Item 1: Lua -->
+                <div class="tech-card glow-card" data-category="languages">
+                    <div class="mouse-glow"></div>
+                    <div class="tech-icon-box lua-color">Lua</div>
+                    <div class="tech-info">
+                        <h4>Lua Scripting</h4>
+                        <span>QBCore / FiveM Dev</span>
+                    </div>
+                </div>
+
+                <!-- Item 2: JavaScript -->
+                <div class="tech-card glow-card" data-category="languages">
+                    <div class="mouse-glow"></div>
+                    <div class="tech-icon-box js-color">JS</div>
+                    <div class="tech-info">
+                        <h4>JavaScript</h4>
+                        <span>Frontend & Backend UI</span>
+                    </div>
+                </div>
+
+                <!-- Item 3: Node.js -->
+                <div class="tech-card glow-card" data-category="server">
+                    <div class="mouse-glow"></div>
+                    <div class="tech-icon-box node-color">Node</div>
+                    <div class="tech-info">
+                        <h4>Node.js</h4>
+                        <span>Server API & Automation</span>
+                    </div>
+                </div>
+
+                <!-- Item 4: Git / GitHub -->
+                <div class="tech-card glow-card" data-category="tools">
+                    <div class="mouse-glow"></div>
+                    <div class="tech-icon-box git-color">Git</div>
+                    <div class="tech-info">
+                        <h4>Git & GitHub</h4>
+                        <span>Version Control & Deploy</span>
+                    </div>
+                </div>
+
+                <!-- Item 5: HTML / CSS -->
+                <div class="tech-card glow-card" data-category="languages">
+                    <div class="mouse-glow"></div>
+                    <div class="tech-icon-box html-color">UI</div>
+                    <div class="tech-info">
+                        <h4>HTML5 & CSS3</h4>
+                        <span>Modern UI Layouts</span>
+                    </div>
+                </div>
+
+                <!-- Item 6: Blender / 3D -->
+                <div class="tech-card glow-card" data-category="tools">
+                    <div class="mouse-glow"></div>
+                    <div class="tech-icon-box blender-color">3D</div>
+                    <div class="tech-info">
+                        <h4>Blender 3D</h4>
+                        <span>Asset Modeling & Sculpting</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Bento Showcase -->
+        <section class="bento-container" style="margin-top: 2.5rem;">
+            <div class="bento-box project-card-item project-box-1 glow-card" id="projects" data-aos="fade-up" data-aos-duration="800">
+                <div class="mouse-glow"></div>
+                <div class="project-image-wrapper">
+                    <div class="project-mockup-screen automation-bg">
+                        <div class="terminal-header">
+                            <span class="t-dot red"></span>
+                            <span class="t-dot yellow"></span>
+                            <span class="t-dot green"></span>
+                            <span class="t-title">server_automation.lua</span>
+                        </div>
+                        <div class="terminal-body">
+                            <code>> Initializing QBCore resource... [OK]</code>
+                            <code>> Database sync secured [200 OK]</code>
+                            <code>> Automation script running smoothly...</code>
+                        </div>
+                    </div>
+                    <img src="project-1.jpg" alt="Project Automation Script" onerror="this.style.display='none'">
+                </div>
+                <div class="project-content">
+                    <div class="project-preview-badge">AUTOMATION</div>
+                    <h3 data-i18n="proj_1_title">ប្រព័ន្ធស្វ័យប្រវត្តិកម្ម</h3>
+                    <p data-i18n="proj_1_desc">ប្រព័ន្ធគ្រប់គ្រងទិន្នន័យ និងស្គ្រីបដំណើរការដោយស្វ័យប្រវត្តិសម្រាប់កាត់បន្ថយពេលវេលាធ្វើការងារ។</p>
+                </div>
+            </div>
+
+            <div class="bento-box project-card-item project-box-2 glow-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="mouse-glow"></div>
+                <div class="project-image-wrapper">
+                    <div class="project-mockup-screen dashboard-bg">
+                        <div class="dashboard-preview-header">
+                            <span class="db-title">ADMIN DASHBOARD v2.4</span>
+                            <span class="db-status">LIVE</span>
+                        </div>
+                        <div class="dashboard-preview-grid">
+                            <div class="db-card">CPU: 14%</div>
+                            <div class="db-card">RAM: 4.2GB</div>
+                            <div class="db-card">PING: 24ms</div>
+                        </div>
+                    </div>
+                    <img src="project-2.jpg" alt="Project Dashboard UI" onerror="this.style.display='none'">
+                </div>
+                <div class="project-content">
+                    <div class="project-preview-badge">DASHBOARD UI</div>
+                    <h3 data-i18n="proj_2_title">ផ្ទាំងគ្រប់គ្រងប្រព័ន្ធ (UI/UX)</h3>
+                    <p data-i18n="proj_2_desc">ការឌីហ្សាញប្លង់ និងផ្ទាំងបញ្ជាម៉ាស៊ីនបម្រើដែលមានភាពទាក់ទាញ និងងាយស្រួលគ្រប់គ្រង។</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- IQ Quiz Game Section (20 Questions Khmer & Logic) -->
+        <section class="iq-game-section" id="iqgame" data-aos="fade-up" data-aos-duration="1000">
+            <div class="iq-game-card glow-card">
+                <div class="mouse-glow"></div>
+                <div class="iq-header">
+                    <span class="iq-badge" data-i18n="iq_badge">CYBERNETIC IQ CHALLENGE (២០ សំណួរ)</span>
+                    <h2 data-i18n="iq_title">ល្បែងសំណួរចម្លើយល្បងប្រាជ្ញា និងឡូស៊ិកបែបខ្មែរ</h2>
+                    <p data-i18n="iq_desc">តើខួរក្បាល System Expert របស់អ្នកខ្លាំងកម្រិតណា? សាកល្បងឆ្លើយសំណួរល្បងប្រាជ្ញាចំនួន ២០ ខាងក្រោមនេះ!</p>
+                </div>
+
+                <div class="quiz-box" id="quizBox">
+                    <div class="quiz-start-screen" id="quizStartScreen">
+                        <div class="quiz-icon-pulse">🧠</div>
+                        <h3 data-i18n="quiz_ready">រួចរាល់ដើម្បីផ្ទៀងផ្ទាត់កម្រិត IQ ២០ សំណួររបស់អ្នកឬនៅ?</h3>
+                        <p data-i18n="quiz_rules">មានសំណួរចំនួន ២០ ដែលទាក់ទងនឹងប្រាជ្ញាស្មារតី ភាសា និងឡូស៊ិក។</p>
+                        <button class="btn-glow" id="startQuizBtn" data-i18n="quiz_start_btn">ចាប់ផ្តើមលេង ២០ សំណួរឥឡូវនេះ</button>
+                    </div>
+
+                    <div class="quiz-question-screen" id="quizQuestionScreen" style="display: none;">
+                        <div class="quiz-progress-bar-row">
+                            <span id="questionCounter">សំណួរទី ១ ក្នុងចំណោម ២០</span>
+                            <span id="quizScoreTracker">ពិន្ទុ: 0</span>
+                        </div>
+                        <h3 id="questionText" class="question-text">សំនួរនឹងបង្ហាញនៅទីនេះ...</h3>
+                        <div class="options-grid" id="optionsGrid"></div>
+                    </div>
+
+                    <div class="quiz-result-screen" id="quizResultScreen" style="display: none;">
+                        <div class="result-trophy">🏆</div>
+                        <h3 data-i18n="quiz_done">លទ្ធផលតេស្ត IQ ២០ សំណួររបស់អ្នក</h3>
+                        <p id="resultMessage" class="result-message-text">អ្នកទទួលបានពិន្ទុ...</p>
+                        <button class="btn-glow" id="restartQuizBtn" data-i18n="quiz_restart_btn">លេងម្តងទៀត</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact" data-aos="fade-up" data-aos-duration="1000">
+            <div class="contact-card-modern glow-card">
+                <div class="mouse-glow"></div>
+                <div class="contact-info-side">
+                    <h2 data-i18n="contact_heading">ចាប់ផ្តើមការងារជាមួយគ្នា</h2>
+                    <p data-i18n="contact_desc">មានគម្រោង ឬចង់ពិភាក្សាការងារជាមួយខ្ញុំ? សូមចុចលើអ៊ីមែលខាងក្រោមដើម្បីចម្លងទុក (Copy) ឬទាក់ទងតាមបណ្តាញសង្គមផ្ទាល់ខ្លួន៖</p>
+                    
+                    <div class="email-direct copy-trigger" id="copyEmailBtn" data-email="ravendjproducer.1@gmail.com" title="ចុចเพื่อ Copy អ៊ីមែល">
+                        <div class="email-header-row">
+                            <span data-i18n="email_label">អ៊ីមែលផ្ទាល់ខ្លួន (ចុចដើម្បី Copy)៖</span>
+                            <span class="copy-feedback" id="copyFeedback">Copied!</span>
+                        </div>
+                        <a href="javascript:void(0);" class="email-text-val">ravendjproducer.1@gmail.com</a>
+                    </div>
+
+                    <div class="social-links-box">
+                        <span data-i18n="social_label">បណ្តាញសង្គមផ្ទាល់ខ្លួន៖</span>
+                        <div class="social-buttons">
+                            <a href="https://t.me/RaaVann" target="_blank" class="social-btn telegram">Telegram</a>
+                            <a href="https://github.com/ravendjproducer" target="_blank" class="social-btn github">GitHub</a>
+                            <a href="https://linkedin.com" target="_blank" class="social-btn linkedin">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="contactForm" class="contact-form-side">
+                    <div class="input-group">
+                        <input type="text" id="senderName" data-i18n-placeholder="form_name" placeholder="ឈ្មោះរបស់អ្នក" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="senderEmail" data-i18n-placeholder="form_email" placeholder="អ៊ីមែលរបស់អ្នក" required>
+                    </div>
+                    <div class="input-group">
+                        <textarea id="senderMessage" rows="4" data-i18n-placeholder="form_msg" placeholder="សរសេរខ្លឹមសារសារ..." required></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn" class="btn-glow full-w" data-i18n="form_submit">បញ្ជូនសារឥឡូវនេះ</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer" data-aos="fade" data-aos-duration="800">
+            <p data-i18n="footer_text">&copy; 2026 Ma Vy. រក្សាសិទ្ធិគ្រប់យ៉ាង។ រចនា និងអភិវឌ្ឍដោយភាពប្រណីត។</p>
+        </footer>
+
+    </div>
+
+    <!-- AOS Animation Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Script File -->
+    <script src="script.js"></script>
+</body>
+</html>

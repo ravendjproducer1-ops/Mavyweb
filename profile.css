@@ -1,0 +1,61 @@
+.brand-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-glow);
+    transition: transform 0.3s ease;
+}
+
+.brand-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.brand-avatar:hover { transform: scale(1.05); }
+
+.hero-image-box { display: flex; justify-content: center; align-items: center; }
+.image-frame-container { position: relative; }
+
+.image-frame {
+    width: 280px;
+    height: 280px;
+    border-radius: 36px;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+    transition: transform 0.4s ease;
+}
+
+.image-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 32px; display: block; }
+.image-frame:hover { transform: translateY(-5px) scale(1.02); }
+
+.floating-status-badge {
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    background: rgba(17, 24, 39, 0.9);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--accent-color);
+    padding: 0.65rem 1rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    animation: floatBadge 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatBadge {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+.status-dot-mini {
+    width: 10px;
+    height: 10px;
+    background-color: var(--status-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--status-color);
+    animation: pulse 2s infinite;
+}
+
+.floating-status-badge .badge-title { display: block; font-size: 0.7rem; color: var(--text-muted); }
+.floating-status-badge .badge-sub { display: block; font-size: 0.8rem; font-weight: 700; color: var(--status-color); }
